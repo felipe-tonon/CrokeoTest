@@ -1,0 +1,39 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+// Custom definitions
+
+.bg-crokeo {
+  background-color: #00c390
+}
+
+.text-greenish {
+  color: #00c390;
+}
+
+.border-greenish {
+  border: 2px solid #00c390;
+}
+
+.border-thick {
+  border-width: 2px;
+}
+
+.border-header {
+  border-radius: 0 0 500rem 500rem;
+}
+
+.border-rounded-smooth {
+  border-radius: 1rem !important;
+}
+
+.font-small {
+  font-size: 12px;
+}
