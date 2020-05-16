@@ -2,52 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\ActivityLevelOption;
-use App\AgeOption;
-use App\GenderOption;
-use App\Pet;
+use App\RequestToPetMapper;
 use App\Services\PrescriptionService;
-use App\SizeOption;
-use App\TypeOption;
+use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
 
     /** @var PrescriptionService */
     private $prescriptionService;
+    /** @var RequestToPetMapper */
+    private $requestToPetMapper;
 
     /**
      * PrescriptionController constructor.
      * @param PrescriptionService $prescriptionService
+     * @param RequestToPetMapper $requestToPetMapper
      */
-    public function __construct(PrescriptionService $prescriptionService)
+    public function __construct(PrescriptionService $prescriptionService, RequestToPetMapper $requestToPetMapper)
     {
         $this->prescriptionService = $prescriptionService;
+        $this->requestToPetMapper = $requestToPetMapper;
     }
 
-
     /**
-    #parameters: array:10 [▼
-    "_token" => "QZ3eoFQZYK7YWrUXaVoIFUdNkc7MmoNABjhxNOsZ"
-    "email" => "fetokun@gmail.com"
-    "petType" => "2"
-    "petName" => "Lucy"
-    "petSize" => "3"
-    "weightInKg" => null
-    "petGender" => "2"
-    "petAge" => "1"
-    "petActivityLevel" => "2"
-    "isSterilized" => "1"
-    ]
-     */
-
-    /**
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function calculatePrescription()
+    public function calculatePrescription(Request $request)
     {
         try {
-            $pet = $this->getPetObjectFromRequest();
+            $pet = $this->requestToPetMapper->getPetFromRequest($request);
             $prescription = $this->prescriptionService->getPrescriptionForPet($pet);
         } catch (\Exception $e) {
             return view('error', ['e' => $e]);
@@ -60,24 +45,4 @@ class PrescriptionController extends Controller
         return view('prescription', $vars);
     }
 
-    private function getPetObjectFromRequest()
-    {
-        $pet = new Pet();
-        $pet->setEmailOwner(\request("email"));
-        $pet->setType(new TypeOption($this->getRequestParamAsInt("petType")));
-        $pet->setName(\request("petName"));
-        $pet->setSize(new SizeOption($this->getRequestParamAsInt("petSize")));
-        $pet->setWeight(\request("weightInKg"));
-        $pet->setGender(new GenderOption($this->getRequestParamAsInt("petGender")));
-        $pet->setAge(new AgeOption($this->getRequestParamAsInt("petAge")));
-        $pet->setActivityLevel(new ActivityLevelOption($this->getRequestParamAsInt("petActivityLevel")));
-        $pet->setIsSterilized((bool)\request("isSterilized"));
-
-        return $pet;
-    }
-
-    private function getRequestParamAsInt(string $parameter): int
-    {
-        return (int)request($parameter);
-    }
 }
