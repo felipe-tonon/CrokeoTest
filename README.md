@@ -15,6 +15,8 @@ Running this program requires:
 To install all libraries run in the console from the root folder:
 ```bash
 # composer install
+# cp .env.example .env
+# php artisan key:generate
 # npm install
 # npm run watch
 ```
