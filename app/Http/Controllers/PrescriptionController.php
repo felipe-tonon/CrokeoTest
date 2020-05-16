@@ -63,7 +63,7 @@ class PrescriptionController extends Controller
     private function getPetObjectFromRequest()
     {
         $pet = new Pet();
-        $pet->setEmailOwner(request("email"));
+        $pet->setEmailOwner(\request("email"));
         $pet->setType(new TypeOption($this->getRequestParamAsInt("petType")));
         $pet->setName(\request("petName"));
         $pet->setSize(new SizeOption($this->getRequestParamAsInt("petSize")));
