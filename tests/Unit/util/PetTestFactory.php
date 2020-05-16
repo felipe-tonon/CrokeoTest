@@ -4,8 +4,7 @@
  * User: felipe
  */
 
-namespace Tests\Unit;
-
+namespace Tests\Unit\util;
 
 use App\ActivityLevelOption;
 use App\AgeOption;

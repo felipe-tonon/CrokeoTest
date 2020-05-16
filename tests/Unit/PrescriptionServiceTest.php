@@ -10,6 +10,7 @@ use App\Services\PrescriptionService;
 use App\Services\PriceService;
 use App\TypeOption;
 use PHPUnit\Framework\TestCase;
+use Tests\Unit\util\PetTestFactory;
 
 class PrescriptionServiceTest extends TestCase
 {

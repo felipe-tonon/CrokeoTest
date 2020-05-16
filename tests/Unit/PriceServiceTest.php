@@ -2,14 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\KibblePackage;
-use App\Services\InvalidPetSizeException;
 use App\Services\InvalidPetTypeException;
-use App\Services\KibblePackageService;
-use App\Services\PrescriptionService;
 use App\Services\PriceService;
 use App\TypeOption;
 use PHPUnit\Framework\TestCase;
+use Tests\Unit\util\PetTestFactory;
 
 class PriceServiceTest extends TestCase
 {
