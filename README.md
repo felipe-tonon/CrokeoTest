@@ -38,3 +38,13 @@ If everything has been installed correctly, all it takes to start the server is 
 ```bash
 # php artisan serve 
 ```
+
+## Considerations
+
+Due to time constraints some parts of this implementation were left out.
+
+I would take the following measures before shipping this code to production:
+
+- Move data from the constants in `...Data.php` classes to a database such as `MySQL`
+- Create tests for `PrescriptionController.php`
+- Create tests for `RequestToPetMapper.php`
