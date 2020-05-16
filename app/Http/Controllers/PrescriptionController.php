@@ -31,6 +31,8 @@ class PrescriptionController extends Controller
      */
     public function calculatePrescription(Request $request)
     {
+        $this->validateRequest($request);
+
         try {
             $pet = $this->requestToPetMapper->getPetFromRequest($request);
             $prescription = $this->prescriptionService->getPrescriptionForPet($pet);
@@ -43,6 +45,20 @@ class PrescriptionController extends Controller
           'prescription' => $prescription
         ];
         return view('prescription', $vars);
+    }
+
+    private function validateRequest(Request $request)
+    {
+        $request->validate([
+            'petType' => 'required|integer',
+            'petSize' => 'required|integer',
+            'petGender' => 'required|integer',
+            'petAge' => 'required|integer',
+            'petActivityLevel' => 'required|integer',
+
+            'email' => 'required|email',
+            'petName' => 'required|string',
+        ]);
     }
 
 }
