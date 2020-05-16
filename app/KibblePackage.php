@@ -23,7 +23,7 @@ class KibblePackage
      * @param string $description
      * @param float $price
      */
-    public function __construct(string $code, string $description, float $price)
+    public function __construct(string $code, ?string $description, float $price)
     {
         $this->code = $code;
         $this->description = $description;
