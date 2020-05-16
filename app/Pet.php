@@ -13,13 +13,18 @@ class Pet
     private $size;
     /** @var ActivityLevelOption */
     private $activityLevel;
+    /** @var GenderOption */
+    private $gender;
+
+    /** @var int - weight in kg */
+    private $weight;
+
     /** @var bool */
     private $isSterilized;
-
     /** @var string */
     private $name;
     /** @var string */
-    private $nameOwner;
+    private $emailOwner;
 
     /**
      * @param TypeOption $type
@@ -68,15 +73,6 @@ class Pet
     {
         $this->name = $name;
     }
-
-    /**
-     * @param string $nameOwner
-     */
-    public function setNameOwner(string $nameOwner): void
-    {
-        $this->nameOwner = $nameOwner;
-    }
-
 
 
     /**
@@ -128,13 +124,50 @@ class Pet
     }
 
     /**
-     * @return string
+     * @return GenderOption
      */
-    public function getNameOwner(): string
+    public function getGender(): GenderOption
     {
-        return $this->nameOwner;
+        return $this->gender;
     }
 
+    /**
+     * @param GenderOption $gender
+     */
+    public function setGender(GenderOption $gender): void
+    {
+        $this->gender = $gender;
+    }
 
+    /**
+     * @return int
+     */
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
 
+    /**
+     * @param int $weight
+     */
+    public function setWeight(?int $weight): void
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmailOwner(): string
+    {
+        return $this->emailOwner;
+    }
+
+    /**
+     * @param string $emailOwner
+     */
+    public function setEmailOwner(string $emailOwner): void
+    {
+        $this->emailOwner = $emailOwner;
+    }
 }

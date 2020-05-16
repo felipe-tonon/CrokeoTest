@@ -6,9 +6,9 @@
 
 namespace App\Services;
 
+use App\Data\PrescriptionData;
 use App\Pet;
 use App\Prescription;
-use App\PrescriptionData;
 use App\TypeOption;
 
 class PrescriptionService
@@ -18,14 +18,18 @@ class PrescriptionService
 
     /** @var KibblePackageService */
     private $kibblePackageService;
+    /** @var PriceService */
+    private $priceService;
 
     /**
      * PrescriptionService constructor.
      * @param KibblePackageService $kibblePackageService
+     * @param PriceService $priceService
      */
-    public function __construct(KibblePackageService $kibblePackageService)
+    public function __construct(KibblePackageService $kibblePackageService, PriceService $priceService)
     {
         $this->kibblePackageService = $kibblePackageService;
+        $this->priceService = $priceService;
     }
 
     /**
@@ -45,6 +49,8 @@ class PrescriptionService
         $prescription->setDailyAmount($dailyAmount);
         $prescription->setDeliveryAmount($dailyAmount * self::DELIVERY_AMOUNT_DAY_MULTIPLIER);
 
+        $prescription->setMonthlyPrice($this->priceService->getPrice($pet));
+
         return $prescription;
     }
 
@@ -63,9 +69,6 @@ class PrescriptionService
             $pet->getAge()->getOptionId() . PrescriptionData::SEPARATOR .
             $pet->getActivityLevel()->getOptionId() . $isSterilizedString;
 
-        echo("Index=" . $index);
-        echo("\nprescriptionData=");
-        var_dump($prescriptionData);
         return $prescriptionData[$index];
     }
 

@@ -4,12 +4,14 @@
  * User: felipe
  */
 
-namespace App;
+namespace App\Data;
 
-abstract class PrescriptionData
+use App\ActivityLevelOption;
+use App\AgeOption;
+use App\SizeOption;
+
+abstract class PrescriptionData implements Data
 {
-    const SEPARATOR = '|';
-
     const CAT_DAILY_AMOUNTS = [
         SizeOption::XS . self::SEPARATOR . AgeOption::YOUNG . self::SEPARATOR . ActivityLevelOption::LOW . 'true' => 45,
         SizeOption::XS . self::SEPARATOR . AgeOption::YOUNG . self::SEPARATOR . ActivityLevelOption::LOW . 'false' => 45,

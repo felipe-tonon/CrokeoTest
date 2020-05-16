@@ -7,6 +7,7 @@ use App\Services\InvalidPetSizeException;
 use App\Services\InvalidPetTypeException;
 use App\Services\KibblePackageService;
 use App\Services\PrescriptionService;
+use App\Services\PriceService;
 use App\TypeOption;
 use PHPUnit\Framework\TestCase;
 
@@ -17,17 +18,21 @@ class PrescriptionServiceTest extends TestCase
     private $prescriptionService;
     /** @var KibblePackageService*/
     private $kibblePackageServiceStub;
-
+    /** @var PriceService */
+    private $priceService;
 
     protected function setUp(): void
     {
-        // Create a stub for the SomeClass class.
+        // Create a stubs.
         $this->kibblePackageServiceStub = $this->createMock(KibblePackageService::class);
-
         $this->kibblePackageServiceStub->method('getKibblePackage')
             ->willReturn(new KibblePackage('C0001', 'Some description', 29));
 
-        $this->prescriptionService = new PrescriptionService($this->kibblePackageServiceStub);
+        $this->priceService = $this->createMock(PriceService::class);
+        $this->priceService->method('getPrice')->willReturn(99);
+
+        $this->prescriptionService = new PrescriptionService($this->kibblePackageServiceStub,
+            $this->priceService);
     }
 
 

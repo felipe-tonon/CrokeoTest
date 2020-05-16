@@ -14,8 +14,9 @@ class Prescription
     /** @var KibblePackage */
     private $kibblePackage;
 
-    /** @var string */
-    private $nameOwner;
+    /** @var int */
+    private $monthlyPrice;
+
     /** @var int - in grams*/
     private $dailyAmount;
     /** @var int - in grams */
@@ -54,22 +55,6 @@ class Prescription
     }
 
     /**
-     * @return string
-     */
-    public function getNameOwner(): string
-    {
-        return $this->nameOwner;
-    }
-
-    /**
-     * @param string $nameOwner
-     */
-    public function setNameOwner(string $nameOwner): void
-    {
-        $this->nameOwner = $nameOwner;
-    }
-
-    /**
      * @return int
      */
     public function getDailyAmount(): int
@@ -99,6 +84,22 @@ class Prescription
     public function setDeliveryAmount(int $deliveryAmount): void
     {
         $this->deliveryAmount = $deliveryAmount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMonthlyPrice(): int
+    {
+        return $this->monthlyPrice;
+    }
+
+    /**
+     * @param int $monthlyPrice
+     */
+    public function setMonthlyPrice(int $monthlyPrice): void
+    {
+        $this->monthlyPrice = $monthlyPrice;
     }
 
 }
