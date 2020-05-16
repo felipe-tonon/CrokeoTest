@@ -12,7 +12,7 @@ use App\SizeOption;
 abstract class PriceData implements Data
 {
     const CAT_PRICES = [
-        SizeOption::XS . self::SEPARATOR . AgeOption::YOUNG => 49.0,
+        SizeOption::XS . self::SEPARATOR . AgeOption::YOUNG => 39,
         SizeOption::XS . self::SEPARATOR . AgeOption::ADULT => 39,
         SizeOption::XS . self::SEPARATOR . AgeOption::OLD => 39,
 
